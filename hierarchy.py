@@ -1,5 +1,15 @@
+from abc import ABC, abstractmethod
 
-class Circle:
+class Shape(ABC):
+
+    @abstractmethod
+    def area(self):
+        pass
+    @abstractmethod
+    def perimeter(self):
+        pass
+
+class Circle(Shape):
     def __init__(self, pi, radius):
         self.pi = pi
         self.radius = radius
@@ -9,7 +19,7 @@ class Circle:
     def perimeter(self):
         return 2 * self.pi * self.radius
         
-class Rectangle:
+class Rectangle(Shape):
     def __init__(self, width, height):
         self.width = width
         self.height = height
@@ -19,7 +29,7 @@ class Rectangle:
     def perimeter(self):
         return 2 * self.width + 2 * self.height
 
-class Triangle:
+class Triangle(Shape):
     def __init__(self, a, b, c):
         self.a = a
         self.b = b
@@ -41,9 +51,4 @@ calculation = [
 ]
     
 for c in calculation:
-    if isinstance(c, Circle):
-        print("Circle Area:", c.area(), "Circle Perimeter:", c.perimeter())
-    elif isinstance(c, Rectangle):
-        print("Rectangle Area:", c.area(), "Rectangle Perimeter:", c.perimeter())
-    elif isinstance(c, Triangle):
-        print("Triangle Area:", c.area(), "Triangle Perimeter:", c.perimeter())
+    print(f"{c.__class__.__name__} Area: {c.area()} {c.__class__.__name__} Perimeter: {c.perimeter()}")
